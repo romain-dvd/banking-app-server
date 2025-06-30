@@ -1,0 +1,32 @@
+{
+    "author": "Romain David",
+    "description": "",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "mongoose": "^8.16.1"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.19",
+        "@types/express": "^5.0.3",
+        "@types/node": "^24.0.7",
+        "typescript": "^5.8.3"
+    },
+    "engines": {
+        "node": ">=22.16.0"
+    },
+    "keywords": [
+        "banking",
+        "server",
+        "typescript"
+    ],
+    "main": "dist/index.js",
+    "name": "banking-app-server",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "dev": "npx tsx --env-file=.env src/index.ts",
+        "start": "node ."
+    },
+    "version": "0.0.0"
+}
