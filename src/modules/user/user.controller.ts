@@ -20,12 +20,8 @@ export class UserController {
         response.json();
     }
 
-    public async findById(request: Request, response: Response): Promise<void> {
-        const ID = request.params['id'];
-        if (!ID) {
-            throw new HttpError('Id is missing', 400);
-        }
-        const USER = await this.userUseCase.findById(ID);
+    public async authentify(request: Request, response: Response): Promise<void> {
+        const USER = await this.userUseCase.authentify(request.body);
         response.json(USER);
     }
 

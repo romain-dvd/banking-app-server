@@ -18,8 +18,9 @@ export class UserMongoRepo implements UserRepo {
         }
     }
 
-    public async findById(id: string): Promise<User> {
-        const USER = await this.model.findById(id);
+    public async findByIdWithCredential(id: string): Promise<User> {
+        const QUERY = this.model.findById(id);
+        const USER = await QUERY.select('+credential');
         if (!USER) {
             throw new HttpError(`No user with id ${id} found`, 404);
         }
