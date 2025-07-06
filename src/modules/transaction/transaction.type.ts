@@ -6,8 +6,8 @@ export interface TransactionAccount<
     DEBTOR extends Ref<Account> = Ref<Account>,
     ORIGIN extends Ref<Account> = Ref<Account>
 > {
-    origin: ORIGIN,
     debtor: DEBTOR;
+    origin: ORIGIN;
 }
 
 export interface Transaction<
@@ -18,5 +18,6 @@ export interface Transaction<
     account: TransactionAccount<ORIGIN, DEBTOR>;
     amount: number;
     category: CATEGORY[];
+    date: Date;
     observation?: string;
 }
