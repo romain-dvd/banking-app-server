@@ -10,6 +10,6 @@ const createAccountModel = (name: string): Readonly<Model<Account>> => {
 };
 
 export const getAccountModel = (): Readonly<Model<Account>> => {
-    const NAME = 'ACCOUNT';
+    const NAME = 'Account';
     return mongoose.models[NAME] as Model<Account> || createAccountModel(NAME);
 };
