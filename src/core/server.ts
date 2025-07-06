@@ -1,16 +1,22 @@
 import cors from 'cors';
 import express from 'express';
 import { throwFatal } from '../helpers/error';
+import { handleError } from '../middlewares/error-handler';
+import { createRouter } from '../middlewares/router';
 
 import type { Express, RequestHandler } from 'express';
 import type { Server } from 'http';
-import { createRouter } from '../middlewares/router';
 
 const createMiddlewares = (): ReadonlyArray<RequestHandler> => {
     const CORS_BYPASS = cors();
     const JSON_PARSER = express.json();
     const ROUTER = createRouter();
-    return [CORS_BYPASS, JSON_PARSER, ROUTER] as RequestHandler[];
+    return [
+        handleError,
+        CORS_BYPASS,
+        JSON_PARSER,
+        ROUTER
+    ] as RequestHandler[];
 };
 
 const createExpressApp = (): Express => {
