@@ -18,11 +18,11 @@ export class AccountUseCase {
         }
     };
 
-    public find = async (search: Search<Account>): Promise<Account[]> => {
+    public find = async (search: Search<Account>): Promise<Account<string>[]> => {
         return this.repo.find(search);
     };
 
-    public findById = async (id: string): Promise<Account> => {
+    public findById = async (id: string): Promise<Account<string>> => {
         const ACCOUNT = await this.repo.findById(id);
         if (!ACCOUNT) {
             throw new HttpError('Account not found', 404);

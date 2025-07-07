@@ -12,7 +12,7 @@ const createTransactionAccountSchema = (): Schema<TransactionAccount<string, str
     }, { _id: false });
 };
 
-const createTransactionSchemaDefinition = (): Readonly<SchemaDefinition<Transaction<string, string, string>>> => {
+const createTransactionSchemaDefinition = (): Readonly<SchemaDefinition<Transaction<string, string, string, string>>> => {
     return {
         account: { required: true, type: createTransactionAccountSchema() },
         amount: { required: true, type: Number },
@@ -27,7 +27,7 @@ const createTransactionSchemaOptions = (): Readonly<SchemaOptions> => {
     return { timestamps: TIMESTAMP_ENABLED };
 };
 
-export const createTransactionSchema = (): Readonly<Schema<Transaction<string, string, string>>> => {
+export const createTransactionSchema = (): Readonly<Schema<Transaction<string, string, string, string>>> => {
     const DEFINITION = createTransactionSchemaDefinition();
     const OPTIONS = createTransactionSchemaOptions();
     return new mongoose.Schema(DEFINITION, OPTIONS);

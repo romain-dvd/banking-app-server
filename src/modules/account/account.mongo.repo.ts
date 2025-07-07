@@ -16,7 +16,7 @@ export class AccountMongoRepo implements AccountRepo {
         return RESULT.deletedCount > 0;
     };
 
-    public find = async (search: Search<Account>): Promise<Account[]> => {
+    public find = async (search: Search<Account>): Promise<Account<string>[]> => {
         const FILTER = search.filter || {};
         const OFFSET = search.offset || 0;
         const QUERY = this.model.find(FILTER).sort(search.sort).skip(OFFSET);
@@ -24,7 +24,7 @@ export class AccountMongoRepo implements AccountRepo {
         return DOCUMENTS.map((document) => document.toJSON());
     };
 
-    public findById = async (id: string): Promise<Account | null> => {
+    public findById = async (id: string): Promise<Account<string> | null> => {
         const DOCUMENT = await this.model.findById(id);
         return DOCUMENT?.toJSON() || null;
     };

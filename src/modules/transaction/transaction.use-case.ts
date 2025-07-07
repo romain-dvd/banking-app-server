@@ -7,7 +7,7 @@ import type { Transaction } from "./transaction.type";
 export class TransactionUseCase {
     constructor(private repo: TransactionRepo) { }
 
-    public create = async (transaction: Transaction<string, string, string>): Promise<void> => {
+    public create = async (transaction: Transaction<string, string, string, string>): Promise<void> => {
         return this.repo.create(transaction);
     };
 
@@ -18,11 +18,11 @@ export class TransactionUseCase {
         }
     };
 
-    public find = async (search: Search<Transaction<string, string, string>>): Promise<Transaction<string, string, string>[]> => {
+    public find = async (search: Search<Transaction<string, string, string, string>>): Promise<Transaction<string, string, string, string>[]> => {
         return this.repo.find(search);
     };
 
-    public findById = async (id: string): Promise<Transaction<string, string, string>> => {
+    public findById = async (id: string): Promise<Transaction<string, string, string, string>> => {
         const ACCOUNT = await this.repo.findById(id);
         if (!ACCOUNT) {
             throw new HttpError('Transaction not found', 404);
@@ -30,7 +30,7 @@ export class TransactionUseCase {
         return ACCOUNT;
     };
 
-    public update = async (transaction: Transaction<string, string, string>): Promise<void> => {
+    public update = async (transaction: Transaction<string, string, string, string>): Promise<void> => {
         const DONE = await this.repo.update(transaction);
         if (!DONE) {
             throw new HttpError('Update has been canceled: transaction not found', 404);

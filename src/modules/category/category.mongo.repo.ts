@@ -16,7 +16,7 @@ export class CategoryMongoRepo implements CategoryRepo {
         return RESULT.deletedCount > 0;
     };
 
-    public find = async (search: Search<Category>): Promise<Category[]> => {
+    public find = async (search: Search<Category>): Promise<Category<string>[]> => {
         const FILTER = search.filter || {};
         const OFFSET = search.offset || 0;
         const QUERY = this.model.find(FILTER).sort(search.sort).skip(OFFSET);
@@ -24,7 +24,7 @@ export class CategoryMongoRepo implements CategoryRepo {
         return DOCUMENTS.map((document) => document.toJSON());
     };
 
-    public findById = async (id: string): Promise<Category | null> => {
+    public findById = async (id: string): Promise<Category<string> | null> => {
         const DOCUMENT = await this.model.findById(id);
         return DOCUMENT?.toJSON() || null;
     };

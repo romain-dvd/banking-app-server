@@ -18,11 +18,11 @@ export class CategoryUseCase {
         }
     };
 
-    public find = async (search: Search<Category>): Promise<Category[]> => {
+    public find = async (search: Search<Category>): Promise<Category<string>[]> => {
         return this.repo.find(search);
     };
 
-    public findById = async (id: string): Promise<Category> => {
+    public findById = async (id: string): Promise<Category<string>> => {
         const ACCOUNT = await this.repo.findById(id);
         if (!ACCOUNT) {
             throw new HttpError('Category not found', 404);
