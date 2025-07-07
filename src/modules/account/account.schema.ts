@@ -5,6 +5,7 @@ import type { Account } from './account.type';
 
 const createAccountSchemaDefinition = (): Readonly<SchemaDefinition<Account>> => {
     return {
+        baseAmount: { required: true, type: Number },
         label: { required: true, type: String },
         personal: { required: true, type: Boolean }
     };

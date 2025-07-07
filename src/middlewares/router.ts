@@ -2,6 +2,7 @@ import express from 'express';
 import { createAccountRouter } from '../modules/account/account.router';
 import { createCategoryRouter } from '../modules/category/category.router';
 import { createTransactionRouter } from '../modules/transaction/transaction.router';
+import { createUserRouter } from '../modules/user/user.router';
 
 import type { Router } from "express";
 
@@ -10,5 +11,6 @@ export const createRouter = (): Readonly<Router> => {
     ROUTER.use('/accounts', createAccountRouter() as Router);
     ROUTER.use('/categories', createCategoryRouter() as Router);
     ROUTER.use('/transactions', createTransactionRouter() as Router);
+    ROUTER.use('/users', createUserRouter() as Router);
     return ROUTER;
 };
